@@ -1,0 +1,682 @@
+/* reset*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    scroll-padding-top: 80px;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+:root {
+
+    /*colors*/
+
+    --red: #aa2323;
+    --blue: #3E3BA7;
+    --green: #519353;
+    --yellow: #fed500;
+    --black: #000000;
+    --white: #ffffff;
+
+    /*fonts*/
+
+    --font-primary: 'Rodchenko Cond Bold', sans-serif;
+    --font-secondary: 'Rodchenko Cond Regular', sans-serif;
+    --font-body: 'Europa Grotesk SH', sans-serif;
+    --font-header: 'Space Mono Bold', monospace;
+
+    /*font-sizes*/
+
+    --font-size-xxl: clamp(6rem, 10vw, 14rem);
+    --font-size-xl: clamp(4.5rem, 5vw, 6rem);
+    --font-size-l: clamp(3.5rem, 4vw, 4.5rem);
+    --font-size-m: clamp(2rem, 2.5vw, 3rem);
+    --font-size-s: clamp(1.25rem, 2vw, 2rem);
+    --font-size-xs: clamp(0.875rem, 1.5vw, 1.25rem);
+
+    /*spacings*/
+
+    --spacing-xl: 5rem;
+    --spacing-l: 3rem;
+    --spacing-m: 2rem;
+    --spacing-s: 1rem;
+
+    /*borders*/
+
+    --border-radius: 0.5rem;
+
+    /*shadows*/
+
+    --shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+    /*transitions*/
+
+    --transition-fast: 0.2s ease-in-out;
+    --transition-medium: 0.4s ease-in-out;
+    --transition-slow: 0.6s ease-in-out;
+
+    /*z-indexes*/
+    --z-index-low: 10;
+    --z-index-medium: 50;
+    --z-index-high: 100;
+
+    /*breakpoints*/
+    --breakpoint-mobile: 480px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1024px;
+
+    /*line-heights*/
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-loose: 1.8;
+
+    /*header height*/
+    --header-height: 100px;
+    
+}
+
+/*font-face*/
+
+@font-face {
+    font-family: 'Rodchenko Cond Bold';
+    src: url("assets/fonts/RodchenkoCond-Bold.woff2") format('woff2'),
+        url("assets/fonts/RodchenkoCond-Bold.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Rodchenko Cond Regular';
+    src: url("assets/fonts/RodchenkoCond-Regular.woff2") format('woff2'),
+        url("assets/fonts/RodchenkoCond-Regular.woff") format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Europa Grotesk SH';
+    src: url("assets/fonts/EuropaGroteskSH-Bol.woff2") format('woff2'),
+        url("assets/fonts/EuropaGroteskSH-Bol.woff") format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Space Mono Bold';
+    src: url("assets/fonts/SpaceMono-Bold.woff2") format('woff2'),
+        url("assets/fonts/SpaceMono-Bold.woff") format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*general styles*/
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-s);
+    color: var(--black);
+    background-color: var(--white);
+    line-height: var(--line-height-tight);
+    text-wrap: balance;
+    overflow-x: hidden;
+}
+
+/* headings */
+
+h1, h2 {
+    font-family: "Rodchenko Cond Regular", sans-serif;
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.025em;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--black);
+  text-shadow: none;
+}
+
+.btn-1 {
+    display: inline-block;
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-s);
+    padding: 0 0.75rem 0.3rem 0.75rem;
+    background-color: var(--green);
+    color: var(--white);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+    text-decoration: none;
+
+    &:hover {
+        background-color: var(--red);
+        color: var(--white);
+    }
+}
+
+/* separadores */
+
+.section-divider{
+  height: 16px;
+  --s: 16px;
+
+  background:
+    linear-gradient(45deg, var(--red) 25%, transparent 25% 75%, var(--red) 75%),
+    linear-gradient(45deg, var(--red) 25%, transparent 25% 75%, var(--red) 75%);
+  background-color: var(--blue);
+  background-size: var(--s) var(--s);
+  background-position: 0 0, calc(var(--s)/2) calc(var(--s)/2);
+}
+
+/* header */
+
+header {
+    background-color: var(--black);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.header-1 {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-l);
+    overflow: hidden;
+}
+
+.header-2 {
+    color: var(--yellow);
+    font-family: var(--font-header);
+    font-size: var(--font-size-xs);
+    letter-spacing: -0.025em;
+    width: 100%;
+    height: 20px;
+    background-color: var(--blue);
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative; /* Añade esto */
+}
+
+.header-2-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    position: absolute;
+    height: 100%;
+}
+
+.header-2-content p {
+    flex-shrink: 0;
+}
+
+.btn-menu {
+    width: 40px;
+    height: 40px;
+    background-color: var(--red);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    transition: all var(--transition-fast);
+
+    &:hover {
+        background-color: var(--green);
+        gap: 7px;
+    }
+}
+
+.btn-menu span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    
+}
+
+header img {
+    width: 140px;
+    height: auto;
+}
+
+.filling-div {
+    width: 100%;
+    display: flex;
+}
+
+.header-left {
+    justify-content: left;
+}
+
+.header-right {
+    justify-content: right;
+}
+
+
+
+/* hero section */
+
+.hero {
+    padding-top: var(--header-height);
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.hero-link {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+    padding: 1rem 2rem;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--white);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xl);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-medium);
+}
+
+.hero-link img {
+    position: absolute;
+    opacity: 0;
+    transition: all var(--transition-medium);
+    width: clamp(6rem, 8vw, 12rem);
+    left: clamp(3rem, 4vw, 6rem);
+    top: clamp(-0.5rem, 1vw, 0.5rem);
+    transform: rotate(15deg);
+}
+
+.hero-link:hover {
+    padding: 1rem 3rem;
+}
+
+.hero-link-red { background-color: var(--red); }
+.hero-link-blue { background-color: var(--blue); }
+.hero-link-green { background-color: var(--green); }
+.hero-link-black { background-color: var(--black); }
+
+.hero-link:hover img {
+    opacity: 1;
+    transform: rotate(-15deg);
+}
+
+.hero-main {
+    background: url('assets/images/fondos/fondo1.webp') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-main img {
+    height: clamp(300px, 80vh, 1000px);
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(10deg);
+    z-index: 1;
+    object-fit: contain;
+}
+
+.hero-subtitle,
+.hero-tagline {
+    position: absolute;
+    z-index: 2;
+    font-family: var(--font-body);
+    font-size: var(--font-size-s);
+    padding: 0.5rem 1rem;
+    z-index: var(--z-index-high);
+}
+
+.hero-subtitle {
+    top: 15%;
+    left: 15%;
+    color: var(--white);
+    background-color: var(--blue);
+    transform: rotate(-10deg);
+}
+.hero-tagline {
+    bottom: 5%;
+    left: 10%;
+    transform: rotate(-2deg);
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.hero-main h1 {
+    position: absolute;
+    z-index: 2;
+    font-size: var(--font-size-xxl);
+    color: var(--white);
+    background-color: var(--red);
+    padding: 0rem 1rem 2rem;
+    margin: 1rem 0;
+    z-index: var(--z-index-medium);
+    bottom: 5%;
+    transform: rotate(5deg);
+}
+
+/* sobre nosotros section */
+
+.about-us {
+    width: 100%;
+    height: 90vh;
+    background: url(assets/images/fondos/fondo2.webp) no-repeat center center;
+    background-size: cover;
+    padding: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background-color: var(--white);
+    gap: var(--spacing-l);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-tight);
+
+}
+
+.about-us h2 {
+    color: var(--white);
+    font-family: var(--font-body);
+    background-color: var(--red);
+    font-size: var(--font-size-m);
+    padding: 0 1rem;
+}
+
+.about-us-content {
+    display: flex;
+    gap: var(--spacing-l);
+    align-items: center;
+    justify-content: left;
+
+    img {
+        width: 60%;
+        height: auto;
+    }
+
+    .about-us-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-m);
+    }
+}
+
+.about-us-info span {
+    align-items: center;
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--font-size-l);
+    color: var(--white);
+    background-color: var(--blue);
+    padding: 0 1rem;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.about-us-info span:nth-child(1) {
+    transform: rotate(-4deg);
+}
+.about-us-info span:nth-child(2) {
+    transform: rotate(3deg);
+}
+.about-us-info span:nth-child(3) {
+    transform: rotate(-2deg);
+}
+.about-us-info span:nth-child(4) {
+    transform: rotate(5deg);
+}
+
+.grid-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-m);
+}
+
+/* food section */
+
+.platos {
+    background: url(assets/images/fondos/fondo5.jpg) no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 80vh;
+    padding: var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    overflow: hidden;
+}
+
+.platos-container {
+    display: flex;
+    width: max-content;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.platos img {
+    flex: 0 0 auto;
+    width: clamp(200px, 40vw, 600px);
+    margin: 0 -3em;
+}
+
+/* origen section */
+
+.origen {
+    width: 100%;
+    height: 90vh;
+    background: url(assets/images/fondos/fondo3.webp) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    background-color: var(--white);
+    gap: var(--spacing-l);
+    line-height: var(--line-height-tight);
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.origen-image {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    transform-origin: center center;
+    z-index: var(--z-index-medium);
+}
+
+.título {
+    font-family: var(--font-body);
+    font-size: var(--font-size-m);
+    color: var(--white);
+    background-color: var(--red);
+    padding: 0 1rem 0.25em;
+    transform: rotate(-5deg);
+    width: fit-content;
+    height: fit-content;
+}
+
+/* location section */
+
+.location {
+    width: 100%;
+    height: 90vh;
+    background: url(assets/images/fondos/fondo4.png) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    gap: var(--spacing-xl);
+    line-height: var(--line-height-tight);
+    position: relative;
+    overflow: hidden;
+}
+
+.location h2 {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-m);
+    color: var(--red);
+    background-color: var(--white);
+    padding: 0 1rem 0.25em;
+    transform: rotate(-5deg);
+    width: fit-content;
+    height: fit-content;
+}
+
+.adress {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    width: fit-content;
+    height: fit-content;
+}
+
+.adress p:nth-child(1) {
+    font-family: var(--font-body);
+    font-size: var(--font-size-m);
+    color: var(--red);
+    background-color: var(--black);
+    padding: 0 1rem;
+    transform: rotate(-5deg);
+    z-index: var(--z-index-high);
+}
+
+.adress p:nth-child(2) {
+    font-family: var(--font-body);
+    font-size: var(--font-size-s);
+    color: var(--white);
+    background-color: var(--blue);
+    padding: 0 1rem;
+    transform: rotate(3deg);
+    z-index: var(--z-index-high);
+}
+
+.adress a {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-s);
+    color: var(--white);
+    background-color: var(--green);
+    padding: 0 1rem 0.5rem;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    z-index: var(--z-index-high);
+    transition: var(--transition-fast);
+
+    &:hover {
+        background-color: var(--yellow);
+        color: var(--black);
+    }
+}
+
+.matrioshka-dorado {
+    position: absolute;
+    top: -500px;
+    width: clamp(80px, 20vw, 200px);
+    height: auto;
+    pointer-events: none;
+    z-index: var(--z-index-low);
+}
+
+.matrioshka-dorado-1 {
+    left: 10%;
+}
+
+.matrioshka-dorado-2 {
+    left: 30%;
+}
+
+.matrioshka-dorado-3 {
+    right: 10%;
+}
+
+.matrioshka-dorado-4 {
+    right: 30%;
+}
+
+
+/* footer */
+
+footer {
+    width: 100%;
+    height: 60px;
+    background-color: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: var(--font-size-xs);
+    gap: 0.5rem;
+    padding: var(--spacing-xl)
+
+}
+
+.footer a {
+    color: var(--yellow);
+}
